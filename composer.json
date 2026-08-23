@@ -5,7 +5,7 @@
     "keywords": ["laravel", "queue-system", "puskom", "unima"],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
