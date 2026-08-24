@@ -2,12 +2,12 @@
 @section('title', 'Manajemen Petugas')
 
 @section('content')
-<h1 class="text-2xl font-bold mb-6">Manajemen Petugas & Loket</h1>
+<h1 class="text-2xl font-bold mb-6">Manajemen Petugas</h1>
 
 <div class="glass rounded-2xl overflow-hidden">
     <table class="w-full text-sm">
         <thead class="bg-navy-900/60 text-slate-400 text-xs uppercase">
-            <tr><th class="text-left px-5 py-3">Nama</th><th class="text-left px-5 py-3">Layanan Ditangani</th><th class="text-left px-5 py-3">No. Loket</th><th class="text-left px-5 py-3">Status</th><th class="text-left px-5 py-3">Aksi</th></tr>
+            <tr><th class="text-left px-5 py-3">Nama</th><th class="text-left px-5 py-3">Layanan Ditangani</th><th class="text-left px-5 py-3">No. Petugas</th><th class="text-left px-5 py-3">Status</th><th class="text-left px-5 py-3">Aksi</th></tr>
         </thead>
         <tbody class="divide-y divide-cyan-400/10">
             @foreach($officers as $officer)
