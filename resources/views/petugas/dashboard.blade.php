@@ -4,7 +4,7 @@
 @section('content')
 <div class="flex flex-wrap justify-between items-center mb-8 gap-4">
     <div>
-        <h1 class="text-2xl font-bold">Loket {{ $officer->counter_number }}</h1>
+        <h1 class="text-2xl font-bold">Dashboard Petugas — {{ $officer->user->name }}</h1>
         <p class="text-slate-400 text-sm">{{ $officer->currentService->service_name ?? 'Semua Layanan' }}</p>
     </div>
     <form method="POST" action="{{ route('petugas.set-service') }}" class="flex gap-2 items-end flex-wrap">
