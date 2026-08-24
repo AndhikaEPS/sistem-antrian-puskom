@@ -35,6 +35,10 @@
             <p class="text-sm text-slate-200 mt-1">Silakan menuju Loket <span id="counter-number" class="font-bold">-</span></p>
         </div>
 
+        <button id="audio-unlock-btn" class="mt-4 text-xs px-4 py-2 rounded-lg border border-cyan-400/30 hover:bg-cyan-400/10 transition inline-flex items-center gap-2">
+            🔔 <span id="audio-unlock-label">Aktifkan Notifikasi Suara</span>
+        </button>
+
         <div class="flex gap-3 mt-8">
             @if(in_array($queue->status, ['WAITING', 'CALLED']))
             <form method="POST" action="{{ route('mahasiswa.queue.cancel', $queue) }}" class="flex-1"
@@ -70,12 +74,35 @@
 
 @push('scripts')
 <script>
-// Real-time (near real-time) update via AJAX polling setiap 4 detik.
 const statusUrl = "{{ route('mahasiswa.queue.status', $queue) }}";
 const statusLabelColor = {
     WAITING: 'text-amber-300', CALLED: 'text-emerald-300', SERVING: 'text-cyan-300',
     COMPLETED: 'text-slate-400', SKIPPED: 'text-rose-300', CANCELLED: 'text-rose-400',
 };
+
+let audioUnlocked = false;
+let lastKnownStatus = "{{ $queue->status }}";
+
+function speak(text) {
+    if (!('speechSynthesis' in window) || !audioUnlocked) return;
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'id-ID';
+    utter.rate = 0.9;
+    window.speechSynthesis.speak(utter);
+}
+
+document.getElementById('audio-unlock-btn').addEventListener('click', function () {
+    audioUnlocked = true;
+    document.getElementById('audio-unlock-label').textContent = 'Notifikasi Suara Aktif ✓';
+    speak('Notifikasi suara diaktifkan. Kami akan memberi tahu Anda saat nomor dipanggil.');
+});
+
+setInterval(() => {
+    if (audioUnlocked && 'speechSynthesis' in window) {
+        window.speechSynthesis.resume();
+    }
+}, 10000);
 
 async function pollStatus() {
     try {
@@ -96,6 +123,11 @@ async function pollStatus() {
             banner.classList.remove('hidden');
             document.getElementById('counter-number').textContent = data.counter_number ?? '-';
         }
+
+        if (data.status === 'CALLED' && lastKnownStatus !== 'CALLED') {
+            speak(`Nomor antrian ${data.queue_number.split('').join(' ')}, silakan menuju Loket ${data.counter_number ?? ''}.`);
+        }
+        lastKnownStatus = data.status;
 
         if (['COMPLETED', 'CANCELLED', 'SKIPPED'].includes(data.status)) {
             clearInterval(pollInterval);
