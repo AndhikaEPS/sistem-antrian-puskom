@@ -39,9 +39,9 @@ class DatabaseSeeder extends Seeder
 
         // ---------- Petugas (3 loket) ----------
         $petugasData = [
-            ['name' => 'Petugas Loket 1', 'email' => 'petugas1@puskom.unima.ac.id', 'counter' => 1],
-            ['name' => 'Petugas Loket 2', 'email' => 'petugas2@puskom.unima.ac.id', 'counter' => 2],
-            ['name' => 'Petugas Loket 3', 'email' => 'petugas3@puskom.unima.ac.id', 'counter' => 3],
+            ['name' => 'Petugas 1', 'email' => 'petugas1@puskom.unima.ac.id', 'counter' => 1],
+            ['name' => 'Petugas 2', 'email' => 'petugas2@puskom.unima.ac.id', 'counter' => 2],
+            ['name' => 'Petugas 3', 'email' => 'petugas3@puskom.unima.ac.id', 'counter' => 3],
         ];
 
         foreach ($petugasData as $p) {
