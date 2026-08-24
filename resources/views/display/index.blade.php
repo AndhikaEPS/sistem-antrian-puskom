@@ -29,9 +29,6 @@
         <div id="main-number" class="text-7xl md:text-9xl font-black text-cyan-300 pulse-glow mb-4">
             {{ $servingNow->first()->queue_number ?? '---' }}
         </div>
-        <div id="main-counter" class="text-xl md:text-2xl text-slate-200 tracking-wide">
-            LOKET {{ $servingNow->first()->counter_number ?? '-' }}
-        </div>
     </main>
 
     <div class="border-t border-cyan-400/20 max-w-5xl mx-auto w-full"></div>
@@ -42,14 +39,13 @@
             @foreach($servingNow as $q)
             <div class="glass rounded-xl p-4 text-center">
                 <p class="text-2xl font-bold text-cyan-200">{{ $q->queue_number }}</p>
-                <p class="text-xs text-slate-400 mt-1">Loket {{ $q->counter_number }}</p>
             </div>
             @endforeach
         </div>
     </section>
 
     <footer class="text-center text-sm text-slate-400 py-6 tracking-wide">
-        Silakan menuju loket pelayanan
+        Silakan menuju ke petugas pelayanan
     </footer>
 
     <!-- Overlay wajib diklik agar browser mengizinkan pemutaran suara otomatis
@@ -94,6 +90,7 @@
                 window.speechSynthesis.resume();
             }
         }, 10000);
+
         async function pollDisplay() {
             try {
                 const res = await fetch(pollUrl);
@@ -104,18 +101,16 @@
 
                 const top = serving[0];
                 document.getElementById('main-number').textContent = top.queue_number;
-                document.getElementById('main-counter').textContent = 'LOKET ' + (top.counter_number ?? '-');
 
                 document.getElementById('serving-list').innerHTML = serving.map(q => `
                     <div class="glass rounded-xl p-4 text-center">
                         <p class="text-2xl font-bold text-cyan-200">${q.queue_number}</p>
-                        <p class="text-xs text-slate-400 mt-1">Loket ${q.counter_number ?? '-'}</p>
                     </div>
                 `).join('');
 
                 if (top.id !== lastCalledId) {
                     lastCalledId = top.id;
-                    speak(`Nomor antrian ${top.queue_number.split('').join(' ')}, silakan menuju Loket ${top.counter_number ?? ''}.`);
+                    speak(`Nomor antrian ${top.queue_number.split('').join(' ')} dipanggil.`);
                 }
             } catch (e) {
                 console.error('Gagal polling display', e);
