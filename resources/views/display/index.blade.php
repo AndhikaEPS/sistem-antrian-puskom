@@ -52,17 +52,42 @@
         Silakan menuju loket pelayanan
     </footer>
 
+    <!-- Overlay wajib diklik agar browser mengizinkan pemutaran suara otomatis
+         (kebijakan keamanan browser: audio tidak boleh berbunyi sendiri tanpa
+         ada interaksi pengguna terlebih dahulu di halaman ini). -->
+    <div id="audio-unlock-overlay" class="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 cursor-pointer">
+        <div class="glass rounded-2xl p-8 text-center max-w-sm mx-4">
+            <p class="text-4xl mb-4">🔊</p>
+            <h2 class="text-lg font-bold text-cyan-300 mb-2">Aktifkan Suara Panggilan</h2>
+            <p class="text-sm text-slate-400 mb-6">Klik tombol di bawah sekali saja agar suara pemanggilan nomor antrian bisa otomatis berbunyi di layar ini.</p>
+            <button id="audio-unlock-btn" class="px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-semibold transition">
+                Aktifkan Suara
+            </button>
+        </div>
+    </div>
+
     <script>
         let lastCalledId = {{ $servingNow->first()->id ?? 'null' }};
         const pollUrl = "{{ route('display.poll') }}";
+        let audioUnlocked = false;
 
         function speak(text) {
-            if (!('speechSynthesis' in window)) return;
+            if (!('speechSynthesis' in window) || !audioUnlocked) return;
+            window.speechSynthesis.cancel();
             const utter = new SpeechSynthesisUtterance(text);
             utter.lang = 'id-ID';
             utter.rate = 0.9;
             window.speechSynthesis.speak(utter);
         }
+
+        document.getElementById('audio-unlock-btn').addEventListener('click', function () {
+            audioUnlocked = true;
+            const test = new SpeechSynthesisUtterance('Suara diaktifkan');
+            test.lang = 'id-ID';
+            test.volume = 1;
+            window.speechSynthesis.speak(test);
+            document.getElementById('audio-unlock-overlay').style.display = 'none';
+        });
 
         async function pollDisplay() {
             try {
@@ -85,7 +110,6 @@
 
                 if (top.id !== lastCalledId) {
                     lastCalledId = top.id;
-                    // Pengumuman suara otomatis via Web Speech API browser.
                     speak(`Nomor antrian ${top.queue_number.split('').join(' ')}, silakan menuju Loket ${top.counter_number ?? ''}.`);
                 }
             } catch (e) {
