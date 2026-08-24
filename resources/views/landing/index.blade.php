@@ -40,7 +40,7 @@
                 ['label' => 'Jenis Layanan', 'value' => \App\Models\Service::active()->count()],
                 ['label' => 'Antrian Hari Ini', 'value' => \App\Models\Queue::whereDate('queue_date', now())->count()],
                 ['label' => 'Jam Pelayanan', 'value' => '08:00-16:00'],
-                ['label' => 'Loket Aktif', 'value' => \App\Models\Officer::where('status', '!=', 'offline')->count()],
+                ['label' => 'Petugas Aktif', 'value' => \App\Models\Officer::where('status', '!=', 'offline')->count()],
             ];
         @endphp
         @foreach($stats as $s)
