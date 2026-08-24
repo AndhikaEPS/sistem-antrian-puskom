@@ -89,6 +89,11 @@
             document.getElementById('audio-unlock-overlay').style.display = 'none';
         });
 
+        setInterval(() => {
+            if (audioUnlocked && 'speechSynthesis' in window) {
+                window.speechSynthesis.resume();
+            }
+        }, 10000);
         async function pollDisplay() {
             try {
                 const res = await fetch(pollUrl);
