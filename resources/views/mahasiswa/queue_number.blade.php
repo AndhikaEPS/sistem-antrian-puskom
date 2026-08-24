@@ -32,7 +32,7 @@
 
         <div id="called-banner" class="hidden mt-6 bg-emerald-500/15 border border-emerald-400/40 rounded-xl p-5">
             <p class="text-emerald-300 font-bold text-lg">DIPANGGIL</p>
-            <p class="text-sm text-slate-200 mt-1">Silakan menuju Loket <span id="counter-number" class="font-bold">-</span></p>
+            <p class="text-sm text-slate-200 mt-1">Silakan menuju ke petugas pelayanan</p>
         </div>
 
         <button id="audio-unlock-btn" class="mt-4 text-xs px-4 py-2 rounded-lg border border-cyan-400/30 hover:bg-cyan-400/10 transition inline-flex items-center gap-2">
@@ -121,11 +121,10 @@ async function pollStatus() {
         const banner = document.getElementById('called-banner');
         if (data.status === 'CALLED' || data.status === 'SERVING') {
             banner.classList.remove('hidden');
-            document.getElementById('counter-number').textContent = data.counter_number ?? '-';
         }
 
         if (data.status === 'CALLED' && lastKnownStatus !== 'CALLED') {
-            speak(`Nomor antrian ${data.queue_number.split('').join(' ')}, silakan menuju Loket ${data.counter_number ?? ''}.`);
+            speak(`Nomor antrian ${data.queue_number.split('').join(' ')} dipanggil.`);
         }
         lastKnownStatus = data.status;
 
