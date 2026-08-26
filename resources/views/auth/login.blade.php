@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk | PUSKOM Antrian UNIMA</title>
+    <title>Masuk | UPA-TIK Antrian UNIMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: radial-gradient(circle at top, #0c1830 0%, #040914 65%); }
@@ -19,17 +19,15 @@
 <body class="min-h-screen flex items-center justify-center text-slate-100 px-4">
     <div class="glass rounded-2xl p-8 w-full max-w-md shadow-[0_0_35px_rgba(34,211,238,.1)]">
         <div class="text-center mb-8">
-            <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center font-bold text-lg mb-3">P</div>
+            <img src="{{ asset('logo.png') }}" alt="Logo UNIMA" class="w-16 h-16 mx-auto mb-3 object-contain">
             <h1 class="text-xl font-bold">Masuk ke Sistem Antrian</h1>
-            <p class="text-sm text-slate-400 mt-1">PUSKOM Universitas Negeri Manado</p>
+            <p class="text-sm text-slate-400 mt-1">UPA-TIK Universitas Negeri Manado</p>
         </div>
-
         @if($errors->any())
         <div class="bg-rose-500/10 border border-rose-400/30 text-rose-300 text-sm rounded-lg px-4 py-3 mb-5">
             {{ $errors->first() }}
         </div>
         @endif
-
         <form method="POST" action="{{ route('login') }}" class="space-y-4">
             @csrf
             <div>
@@ -48,19 +46,3 @@
             <button class="w-full bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-semibold rounded-lg py-2.5 text-sm transition shadow-[0_0_20px_rgba(34,211,238,.3)]">
                 Masuk
             </button>
-        </form>
-
-        <p class="text-center text-xs text-slate-400 mt-6">
-            Belum punya akun mahasiswa? <a href="{{ route('register') }}" class="text-cyan-400 hover:underline">Daftar di sini</a>
-        </p>
-        <p class="text-center text-xs mt-3"><a href="{{ route('landing') }}" class="text-slate-500 hover:text-cyan-400">&larr; Kembali ke beranda</a></p>
-
-        <div class="mt-6 pt-5 border-t border-cyan-400/10 text-[11px] text-slate-500 leading-relaxed">
-            <p class="font-semibold text-slate-400 mb-1">Akun demo (password: password)</p>
-            Admin: admin@puskom.unima.ac.id<br>
-            Petugas: petugas1@puskom.unima.ac.id<br>
-            Mahasiswa: mahasiswa1@unima.ac.id
-        </div>
-    </div>
-</body>
-</html>
