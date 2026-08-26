@@ -2,7 +2,7 @@
 @section('title', 'Daftar Layanan')
 
 @section('content')
-<h1 class="text-2xl font-bold mb-1">Daftar Layanan PUSKOM</h1>
+<h1 class="text-2xl font-bold mb-1">Daftar Layanan UPA-TIK</h1>
 <p class="text-slate-400 text-sm mb-8">Pilih layanan sesuai kebutuhan Anda.</p>
 
 <div class="grid md:grid-cols-2 gap-5">
