@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'PUSKOM Antrian') | UNIMA</title>
+    <title>@yield('title', 'UPA-TIK Antrian') | UNIMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script>
@@ -36,9 +36,6 @@
         ::-webkit-scrollbar-thumb { background: #0284c7; border-radius: 8px; }
         .transition-smooth { transition: all .25s ease; }
 
-        /* Perbaikan agar teks yang diketik di form selalu terlihat jelas
-           (latar putih + teks gelap), tidak bergantung pada warna custom
-           Tailwind yang kadang gagal dimuat sempurna lewat CDN. */
         input, select, textarea {
             background-color: #ffffff !important;
             color: #0f172a !important;
@@ -60,8 +57,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center font-bold shadow-glow">P</div>
-                    <span class="font-semibold tracking-wide text-cyan-50">PUSKOM <span class="text-cyan-400">UNIMA</span></span>
+                    <img src="{{ asset('logo.png') }}" alt="Logo UNIMA" class="w-9 h-9 object-contain">
+                    <span class="font-semibold tracking-wide text-cyan-50">UPA-TIK <span class="text-cyan-400">UNIMA</span></span>
                 </div>
                 <div class="hidden md:flex items-center gap-6 text-sm text-slate-300">
                     @if(auth()->user()->isMahasiswa())
