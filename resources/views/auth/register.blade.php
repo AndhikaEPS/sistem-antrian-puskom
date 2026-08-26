@@ -19,7 +19,7 @@
 <body class="min-h-screen flex items-center justify-center text-slate-100 px-4 py-10">
     <div class="glass rounded-2xl p-8 w-full max-w-md shadow-[0_0_35px_rgba(34,211,238,.1)]">
         <div class="text-center mb-8">
-                        <img src="{{ asset('logo.png') }}" alt="Logo UNIMA" class="w-16 h-16 mx-auto mb-3 object-contain">
+        <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center font-bold text-lg mb-3">P</div>
             <h1 class="text-xl font-bold">Daftar Akun Mahasiswa</h1>
             <p class="text-sm text-slate-400 mt-1">Untuk mengambil nomor antrian UPA-TIK</p>
         </div>
