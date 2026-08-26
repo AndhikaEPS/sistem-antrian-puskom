@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Antrian PUSKOM UNIMA</title>
+    <title>Sistem Antrian UPA-TIK UNIMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: radial-gradient(circle at top, #0c1830 0%, #040914 65%); }
@@ -15,8 +15,8 @@
 
     <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
         <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center font-bold">P</div>
-            <span class="font-semibold">PUSKOM <span class="text-cyan-400">UNIMA</span></span>
+            <img src="{{ asset('logo.png') }}" alt="Logo UNIMA" class="w-9 h-9 object-contain">
+            <span class="font-semibold">UPA-TIK <span class="text-cyan-400">UNIMA</span></span>
         </div>
         <div class="flex gap-3">
             <a href="{{ route('login') }}" class="text-sm px-4 py-2 rounded-lg border border-cyan-400/30 hover:bg-cyan-400/10 transition">Masuk</a>
@@ -26,7 +26,7 @@
 
     <section class="max-w-5xl mx-auto px-6 pt-16 pb-20 text-center">
         <span class="inline-block text-xs tracking-widest text-cyan-300 border border-cyan-400/30 rounded-full px-4 py-1.5 mb-6">SISTEM ANTRIAN DIGITAL</span>
-        <h1 class="text-4xl md:text-5xl font-bold leading-tight glow-text">Layanan PUSKOM UNIMA<br>Lebih Cepat, Mudah, dan Teratur.</h1>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight glow-text">Layanan UPA-TIK UNIMA<br>Lebih Cepat, Mudah, dan Teratur.</h1>
         <p class="mt-6 text-slate-300 max-w-2xl mx-auto">Ambil nomor antrian secara digital dan pantau posisi antrian Anda tanpa harus menunggu terlalu lama di ruang pelayanan.</p>
         <div class="mt-8 flex flex-wrap justify-center gap-4">
             <a href="{{ route('login') }}" class="px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-semibold shadow-[0_0_25px_rgba(34,211,238,.35)] transition">Ambil Nomor Antrian</a>
@@ -78,7 +78,7 @@
     </section>
 
     <footer class="text-center text-xs text-slate-500 pb-10">
-        &copy; {{ date('Y') }} Pusat Komputer (PUSKOM) Universitas Negeri Manado.
+        &copy; {{ date('Y') }} UPA-TIK (Unit Pelaksana Akademik - Teknologi Informasi dan Komunikasi) Universitas Negeri Manado.
     </footer>
 </body>
 </html>
