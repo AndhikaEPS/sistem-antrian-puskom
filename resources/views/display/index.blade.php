@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Antrian | PUSKOM UNIMA</title>
+    <title>Display Antrian | UPA-TIK UNIMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: radial-gradient(circle at top, #0c1830 0%, #040914 70%); }
@@ -18,7 +18,7 @@
 <body class="min-h-screen text-slate-100 flex flex-col">
 
     <header class="text-center pt-8 pb-4">
-        <h1 class="text-2xl md:text-3xl font-bold tracking-widest text-cyan-300">PUSKOM UNIMA</h1>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-widest text-cyan-300">UPA-TIK UNIMA</h1>
         <p class="text-slate-400 text-sm md:text-base tracking-wide">SISTEM ANTRIAN DIGITAL</p>
     </header>
 
