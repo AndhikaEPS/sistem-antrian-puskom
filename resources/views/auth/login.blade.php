@@ -58,12 +58,6 @@
         </p>
         <p class="text-center text-xs mt-3"><a href="{{ route('landing') }}" class="text-slate-500 hover:text-cyan-400">&larr; Kembali ke beranda</a></p>
 
-        <div class="mt-6 pt-5 border-t border-cyan-400/10 text-[11px] text-slate-500 leading-relaxed">
-            <p class="font-semibold text-slate-400 mb-1">Akun demo (password: password)</p>
-            Admin: admin@puskom.unima.ac.id<br>
-            Petugas: petugas1@puskom.unima.ac.id<br>
-            Mahasiswa: mahasiswa1@unima.ac.id
-        </div>
     </div>
 </body>
 </html>
