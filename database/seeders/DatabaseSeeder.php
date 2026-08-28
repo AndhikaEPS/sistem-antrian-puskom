@@ -19,17 +19,19 @@ class DatabaseSeeder extends Seeder
         Setting::set('default_service_minutes', 5);
 
         // ---------- Jenis Layanan ----------
+        // Sistem ini hanya menggunakan SATU jenis layanan yang menangani
+        // seluruh kebutuhan administrasi mahasiswa.
         $services = [
-            ['service_code' => 'AK', 'service_name' => 'Bantuan Akun & Sistem Informasi', 'description' => 'Bantuan akun mahasiswa, kendala login, reset akun.', 'estimated_duration' => 5, 'sort_order' => 1],
-            ['service_code' => 'JN', 'service_name' => 'Jaringan & Internet', 'description' => 'Kendala koneksi internet, Wi-Fi, jaringan kampus.', 'estimated_duration' => 7, 'sort_order' => 2],
-            ['service_code' => 'LB', 'service_name' => 'Laboratorium Komputer', 'description' => 'Peminjaman lab, pelaporan kerusakan komputer.', 'estimated_duration' => 6, 'sort_order' => 3],
-            ['service_code' => 'PK', 'service_name' => 'Perangkat Komputer', 'description' => 'Komputer/printer bermasalah, instalasi software.', 'estimated_duration' => 8, 'sort_order' => 4],
-            ['service_code' => 'IT', 'service_name' => 'Informasi & Konsultasi IT', 'description' => 'Konsultasi layanan IT & teknologi.', 'estimated_duration' => 4, 'sort_order' => 5],
+            ['service_code' => 'DA', 'service_name' => 'Divisi Administrasi', 'description' => 'Pencicilan UKT, permasalahan KRS (Kartu Rencana Studi), peminjaman alat, dan layanan administrasi lainnya.', 'estimated_duration' => 10, 'sort_order' => 1],
         ];
 
         foreach ($services as $s) {
             Service::updateOrCreate(['service_code' => $s['service_code']], $s + ['status' => 'active']);
         }
+
+        // Nonaktifkan jenis layanan lama (jika sebelumnya pernah dipakai)
+        // agar tidak lagi tampil ke mahasiswa, tanpa menghapus riwayat data.
+        Service::whereIn('service_code', ['AK', 'JN', 'LB', 'PK', 'IT'])->update(['status' => 'inactive']);
 
         // ---------- Admin ----------
         $admin = User::updateOrCreate(
@@ -39,9 +41,9 @@ class DatabaseSeeder extends Seeder
 
         // ---------- Petugas (3 loket) ----------
         $petugasData = [
-            ['name' => 'Petugas 1', 'email' => 'petugas1@puskom.unima.ac.id', 'counter' => 1],
-            ['name' => 'Petugas 2', 'email' => 'petugas2@puskom.unima.ac.id', 'counter' => 2],
-            ['name' => 'Petugas 3', 'email' => 'petugas3@puskom.unima.ac.id', 'counter' => 3],
+            ['name' => 'Petugas Loket 1', 'email' => 'petugas1@puskom.unima.ac.id', 'counter' => 1],
+            ['name' => 'Petugas Loket 2', 'email' => 'petugas2@puskom.unima.ac.id', 'counter' => 2],
+            ['name' => 'Petugas Loket 3', 'email' => 'petugas3@puskom.unima.ac.id', 'counter' => 3],
         ];
 
         foreach ($petugasData as $p) {
