@@ -51,7 +51,7 @@
     </section>
 
     <footer class="text-center text-xs text-slate-500 pb-10">
-        &copy; {{ date('Y') }} UPA-TIK Universitas Negeri Manado.
+        &copy; {{ date('Y') }} UPA-TIK (Unit Penunjang Akademik - Teknologi Informasi dan Komunikasi) Universitas Negeri Manado.
     </footer>
 </body>
 </html>
