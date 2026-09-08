@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -14,7 +13,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', 'nim', 'email', 'phone', 'password', 'role', 'is_active',
+        'name', 'nim', 'nip', 'email', 'phone', 'password', 'role', 'is_active',
     ];
 
     protected $hidden = [
@@ -39,6 +38,21 @@ class User extends Authenticatable
     public function isMahasiswa(): bool
     {
         return $this->role === 'mahasiswa';
+    }
+
+    public function isDosen(): bool
+    {
+        return $this->role === 'dosen';
+    }
+
+    public function isPengunjung(): bool
+    {
+        return $this->role === 'pengunjung';
+    }
+
+    public function isVisitor(): bool
+    {
+        return in_array($this->role, ['mahasiswa', 'dosen', 'pengunjung'], true);
     }
 
     public function isPetugas(): bool
