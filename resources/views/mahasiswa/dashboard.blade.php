@@ -3,7 +3,13 @@
 
 @section('content')
 <h1 class="text-2xl font-bold mb-1">Selamat Datang, {{ $user->name }}</h1>
-<p class="text-slate-400 text-sm mb-8">NIM {{ $user->nim }} &middot; {{ now()->translatedFormat('l, d F Y') }}</p>
+<p class="text-slate-400 text-sm mb-8">
+    @if($user->isMahasiswa()) NIM {{ $user->nim }}
+    @elseif($user->isDosen()) NIP {{ $user->nip }}
+    @else Pengunjung
+    @endif
+    &middot; {{ now()->translatedFormat('l, d F Y') }}
+</p>
 
 @if($activeQueue)
 <div class="glass rounded-2xl p-6 mb-8 glow-border">
